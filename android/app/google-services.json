@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "145212557072",
+    "firebase_url": "https://kilometry-driver-default-rtdb.firebaseio.com",
+    "project_id": "kilometry-driver",
+    "storage_bucket": "kilometry-driver.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:145212557072:android:bc231a4d9ebc915a80c795",
+        "android_client_info": {
+          "package_name": "com.banchin95.kilometrydriver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "145212557072-iflvekp14m9oa46ci12ar5g88ceqca6f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYgINqppKDleQXrsj_SQnMHGkLMDl0Vro"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "145212557072-iflvekp14m9oa46ci12ar5g88ceqca6f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:145212557072:android:696ade875926085080c795",
+        "android_client_info": {
+          "package_name": "com.banchin95.kilometryuser"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "145212557072-iflvekp14m9oa46ci12ar5g88ceqca6f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYgINqppKDleQXrsj_SQnMHGkLMDl0Vro"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "145212557072-iflvekp14m9oa46ci12ar5g88ceqca6f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
