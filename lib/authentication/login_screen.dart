@@ -1,4 +1,5 @@
 import'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:kilometry_user/authentication/signup_screen.dart';
@@ -59,9 +60,23 @@ class _LoginScreenState extends State<LoginScreen>
 
     if(firebaseUser != null)
     {
-      currentFirebaseUser = firebaseUser;
-      Fluttertoast.showToast(msg: "Вход успешно.");
-      Navigator.push(context, MaterialPageRoute(builder: (c)=> const MySplashScreen()));
+       DatabaseReference driversRef = FirebaseDatabase.instance.ref().child("users");
+      driversRef.child(firebaseUser.uid).once().then((driverKey)
+      {
+        final snap = driverKey.snapshot;
+        if(snap.value !=null)
+        {
+          currentFirebaseUser = firebaseUser;
+          Fluttertoast.showToast(msg: "Вход выполнен.");
+          Navigator.push(context, MaterialPageRoute(builder: (c)=> const MySplashScreen()));
+        }
+        else
+        {
+          Fluttertoast.showToast(msg: "Нет записи э.почты.");
+          fAuth.signOut();
+          Navigator.push(context, MaterialPageRoute(builder: (c)=> const MySplashScreen()));
+        }
+      });
     }
     else
     {

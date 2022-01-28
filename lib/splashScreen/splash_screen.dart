@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:kilometry_user/assistants/assistant_methods.dart';
 import 'package:kilometry_user/authentication/login_screen.dart';
 import 'package:kilometry_user/global/global.dart';
 import 'package:kilometry_user/mainScreens/main_screen.dart';
@@ -20,6 +21,8 @@ class _MySplashScreenState extends State<MySplashScreen>
 
   startTimer()
   {
+    fAuth.currentUser != null ? AssistantMethods.readCurrentOnlineUserInfo() : null;
+
     Timer(const Duration(seconds: 1), () async
     {
       if(await fAuth.currentUser != null)

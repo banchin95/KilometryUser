@@ -2,19 +2,17 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:kilometry_user/assistants/assistant_methods.dart';
 import 'package:kilometry_user/authentication/login_screen.dart';
 import 'package:kilometry_user/global/global.dart';
+import 'package:kilometry_user/widgets/my_drawer.dart';
 
-class MainScreen extends StatefulWidget
-{
+class MainScreen extends StatefulWidget {
   @override
   _MainScreenState createState() => _MainScreenState();
 }
 
-
-class _MainScreenState extends State<MainScreen>
-
-{
+class _MainScreenState extends State<MainScreen> {
   final Completer<GoogleMapController> _controllerGoogleMap = Completer();
   GoogleMapController? newGoogleMapController;
 
@@ -23,8 +21,9 @@ class _MainScreenState extends State<MainScreen>
     zoom: 14.4746,
   );
 
-  blackThemeGoogleMap()
-  {
+  GlobalKey<ScaffoldState> sKey = GlobalKey<ScaffoldState>();
+
+  blackThemeGoogleMap() {
     newGoogleMapController!.setMapStyle('''
                     [
                       {
@@ -191,22 +190,57 @@ class _MainScreenState extends State<MainScreen>
   }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: sKey,
+      drawer: Container(
+        width: 290,
+        child: Theme(
+          data: Theme.of(context).copyWith(
+            canvasColor: Colors.blueGrey,
+          ),
+          child: MyDrawer(
+            name: userModelCurrentInfo!.name,
+            email: userModelCurrentInfo!.email,
+          ),
+        ),
+      ),
       body: Stack(
         children: [
           GoogleMap(
             mapType: MapType.normal,
             myLocationEnabled: true,
             initialCameraPosition: _kGooglePlex,
-            onMapCreated: (GoogleMapController controller)
-            {
+            onMapCreated: (GoogleMapController controller) {
               _controllerGoogleMap.complete(controller);
               newGoogleMapController = controller;
 
-              //Черная тема для Google Map
+              //Ночная тема для Google Map
               blackThemeGoogleMap();
             },
+          ),
+
+          //Кастомная кнопка в стиле гамбургер
+          Positioned(
+            top: 30,
+            left: 14,
+            child: GestureDetector(
+              onTap: () {
+                sKey.currentState!.openDrawer();
+              },
+              child: const CircleAvatar(
+                backgroundColor: Colors.blueGrey,
+                child: Icon(
+                  Icons.menu,
+                  color: Colors.white,
+                ),
+              ),
+            ),
           ),
         ],
       ),
